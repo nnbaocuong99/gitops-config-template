@@ -1,0 +1,4 @@
+resources:
+- argo.yaml
+- cicd.yaml
+- dev-env-app.yaml

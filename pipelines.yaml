@@ -1,0 +1,29 @@
+config:
+  argocd:
+    namespace: 
+  pipelines:
+    name: cicd
+environments:
+- apps:
+  - name: 
+    services:
+    - name: taxi
+      pipelines:
+        integration:
+          bindings:
+          - pending
+          - push
+      source_url: 
+      webhook:
+        secret:
+          name: 
+          namespace: cicd
+  name: dev
+  pipelines:
+    integration:
+      bindings:
+      - YOUR_TASK
+      template: ci-template
+- name: stage
+gitops_url: YOUR_URL
+version: 1

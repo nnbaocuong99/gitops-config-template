@@ -1,0 +1,14 @@
+apiVersion: route.openshift.io/v1
+kind: 
+metadata:
+  creationTimestamp: null
+  name: listener
+  namespace: cicd
+spec:
+  port:
+    targetPort: listener
+  to:
+    kind: 
+    name: event-listen
+    weight: 100
+  wildcardPolicy: None

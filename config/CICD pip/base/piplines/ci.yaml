@@ -1,0 +1,94 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  creationTimestamp: null
+  name: ci
+  namespace: cicd
+spec:
+  finally:
+  - name: 
+    params:
+    - name: 
+      value:
+      value: 
+    - name: 
+      value: 
+    - name: 
+      value: 
+    - name: 
+      value: 
+    taskRef:
+      kind:
+      name: ommit
+  params:
+  - name: 
+    type: 
+  - name: SHA
+    type: 
+  - name: 
+    type: string
+  - name: 
+    type: string
+  - name: 
+    type: string
+  - name: 
+    type: string
+  - name: 
+    type: string
+  - name: 
+    type: string
+  - name: 
+    type: string
+  - name: 
+    type: string
+  tasks:
+  - name: pending
+    params:
+    - name: 
+      value: 
+    - name: 
+      value: 
+    - name: 
+      value: 
+    - name: 
+      value: 
+    - name: 
+      value: pending
+    taskRef:
+      kind: 
+      name: commit
+  - name: source
+    params:
+    - name: url
+      value: $(params.GIT_REPO)
+    - name: revision
+      value: $(params.GIT_REF)
+    runAfter:
+    - pending
+    taskRef:
+      kind: ClusterTask
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: shared-data
+  - name: build-image
+    params:
+    - name: TLSVERIFY
+      value: $(params.TLSVERIFY)
+    - name: BUILD_EXTRA_ARGS
+      value: --label=io.openshift.build.commit.author='$(params.COMMIT_AUTHOR)' --label=io.openshift.build.commit.date='$(params.COMMIT_DATE)'
+        --label=io.openshift.build.commit.id='$(params.COMMIT_SHA)' --label=io.openshift.build.commit.message='$(params.COMMIT_MESSAGE)'
+        --label=io.openshift.build.commit.ref='$(params.GIT_REF)'
+    - name: IMAGE
+      value: $(params.IMAGE)
+    runAfter:
+    - clone-source
+    taskRef:
+      kind: ClusterTask
+      name: buildah
+    workspaces:
+    - name: source
+      workspace: shared-data
+  workspaces:
+  - description: This workspace will receive the cloned git repo.
+    name: shared-data

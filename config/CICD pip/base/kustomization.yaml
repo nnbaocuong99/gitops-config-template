@@ -1,0 +1,16 @@
+resources:
+- events.yaml
+- listen.yaml
+- cicdenv.yaml
+- admin.yaml
+- aggregate.yaml
+- registry.yaml
+- services.yaml
+- ci.yaml
+# - run.yaml
+- ci.yaml
+- docker.yaml
+- hooksecrets.yaml
+- tokenaccess.yaml
+- commit.yaml
+- deploy.yaml

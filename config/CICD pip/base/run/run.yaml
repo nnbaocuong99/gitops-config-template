@@ -1,0 +1,23 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerBinding
+metadata:
+  creationTimestamp: null
+  name: push
+  namespace: cicd
+spec:
+  params:
+  - name: gitrepositoryurl
+    value: 
+  - name: fullname
+    value: 
+  - name: io.openshift.build.commit.ref
+    value:
+  - name: io.openshift.build.commit.id
+    value: 
+  - name: io.openshift.build.commit.date
+    value: 
+  - name: io.openshift.build.commit.message
+    value: 
+  - name: io.openshift.build.commit.author
+    value:
+status: {}

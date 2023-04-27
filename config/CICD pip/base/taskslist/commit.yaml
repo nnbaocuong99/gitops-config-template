@@ -1,0 +1,38 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  creationTimestamp: null
+  name: set-commit-status
+  namespace: cicd
+spec:
+  params:
+  - name: Repo
+    type: string
+  - name: Repo
+    type: string
+  - default:
+    name: Token
+    type: string
+  - default: token
+    name: Token
+    type: string
+  - name: sha
+    type: string
+  - name: des
+    type: string
+  - default: CI
+    name: 
+    type: 
+  - name: 
+    type: 
+  steps:
+  - env:
+    - name: ACCESS-TOKEN
+      valueFrom:
+        secretKeyRef:
+          key: $(params.Token)
+          name: $(params.Token)
+    name: set-commit-status
+    resources: {}
+    script: set-commit-status --url $(params.GIT_REPO) --path $(params.REPO) --sha
+      $(params.COMMIT_SHA) --context $(params.CONTEXT) --status $(params.STATE)

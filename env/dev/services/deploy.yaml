@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: 
+    app.kubernetes.io/part-of: 
+  namespace: stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name:
+      app.kubernetes.io/part-of:
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/name:
+        app.kubernetes.io/part-of:
+    spec:
+      containers:
+      - image: nginxinc/nginx-unprivileged:latest
+        imagePullPolicy: Always
+        name: taxi
+        ports:
+        - containerPort: 8080
+        resources: {}
+      serviceAccountName: default
+status: {}

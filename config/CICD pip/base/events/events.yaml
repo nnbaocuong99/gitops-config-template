@@ -1,0 +1,47 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: Event
+metadata:
+  creationTimestamp: null
+  name: event
+  namespace: cicd
+spec:
+  namespaceSelector: {}
+  podTemplate: {}
+  resources: {}
+  serviceAccountName: pipeline
+  triggers:
+  - bindings:
+    - ref: push
+    interceptors:
+    - github:
+        secretRef:
+          secretKey: webhook-secret-key
+          secretName: gitops-webhook-secret
+    - cel:
+        filter: (header.match('X-GitHub-Event', 'push') && body.repository.full_name
+          == 'wtam2018/gitops')
+        overlays:
+        - expression: body.ref.split('/')[2]
+          key: ref
+    name: push
+    template:
+      ref: push-template
+  - bindings:
+    - ref: binding
+    - ref: push-binding
+    interceptors:
+    - github:
+        secretRef:
+          secretKey: secret-key
+          secretName: secret
+    - cel:
+        filter: (header.match('X-Event', 'push') && body.repository.full_name
+        overlays:
+        - expression: body.ref.split('/')[2]
+          key: ref
+    name: build-
+    template:
+      ref: ci-template
+status:
+  configuration:
+    generatedName: ""

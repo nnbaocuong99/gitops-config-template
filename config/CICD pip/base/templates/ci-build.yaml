@@ -1,0 +1,73 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  creationTimestamp: null
+  name: app-ci-template
+  namespace: cicd
+spec:
+  params:
+  - description: branch
+    name: build
+  - description: SHA.
+    name: build.commit.id
+  - description: The date at which the commit was made
+    name: build.commit.date
+  - description: The name of the github user handle that made the commit
+    name: build.commit.author
+  - description: The commit message
+    name: build.commit.message
+  - description: The git repository URL.
+    name: gitrepositoryurl
+  - description: The repository name for this PullRequest.
+    name: fullname
+  - description: The repository to push built images to.
+    name: imageRepo
+  - description: Enable image repository TLS certification verification.
+    name: tlsVerify
+  - description: Extra parameters passed for the push command when pushing images.
+    name: build_extra_args
+  resourcetemplates:
+  - apiVersion: tekton.dev/v1beta1
+    kind: PipelineRun
+    metadata:
+      creationTimestamp: null
+      name: app-ci-$(uid)
+    spec:
+      params:
+      - name: REPO
+        value: $(tt.params.fullname)
+      - name: GIT_REPO
+        value: $(tt.params.gitrepositoryurl)
+      - name: TLSVERIFY
+        value: $(tt.params.tlsVerify)
+      - name: BUILD_EXTRA_ARGS
+        value: $(tt.params.build_extra_args)
+      - name: IMAGE
+        value: $(tt.params.imageRepo):$(tt.params.build.commit.ref)-$(tt.params.build.commit.id)
+      - name: COMMIT_SHA
+        value: $(tt.params.build.commit.id)
+      - name: GIT_REF
+        value: $(tt.params.build.commit.ref)
+      - name: COMMIT_DATE
+        value: $(tt.params.build.commit.date)
+      - name: COMMIT_AUTHOR
+        value: $(tt.params.build.commit.author)
+      - name: COMMIT_MESSAGE
+        value: $(tt.params.build.commit.message)
+      pipelineRef:
+        name: app-ci-pipeline
+      serviceAccountName: pipeline
+      workspaces:
+      - name: shared-data
+        volumeClaimTemplate:
+          metadata:
+            creationTimestamp: null
+          spec:
+            accessModes:
+            - ReadWriteOnce
+            resources:
+              requests:
+                storage: 1Gi
+          status: {}
+    status: {}
+status: {}

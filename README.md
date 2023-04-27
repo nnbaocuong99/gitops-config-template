@@ -1,10 +1,10 @@
 # Gitops-config-template
 
-#### Template
+#### 1. Template
 - [ArgoCD configurations](https://github.com/nnbaocuong99/gitops-config-template.git)
 - [CI/CD](https://github.com/nnbaocuong99/gitops-config-template/tree/main/config/CICD%20pip)
 
-#### Environments
+#### 2. Environments
 - [.env](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env)
 
   - Dev
@@ -19,6 +19,6 @@
 
 
 
-#### Src
+#### 3. Src
 - [src](https://github.com/nnbaocuong99/gitops-config-template/tree/main/src) 
 - [CSS](https://github.com/nnbaocuong99/gitops-config-template/blob/main/src/css.js)

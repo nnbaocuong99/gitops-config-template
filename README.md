@@ -1,2 +1,24 @@
-# gitops-config-template
-gitops / yaml template,...
+# Gitops-config-template
+
+#### Template
+- [ArgoCD configurations](https://github.com/nnbaocuong99/gitops-config-template.git)
+- [CI/CD](https://github.com/nnbaocuong99/gitops-config-template/tree/main/config/CICD%20pip)
+
+#### Environments
+- [.env](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env)
+
+  - Dev
+    - [base](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env/dev/base)
+    - [overlays](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env/dev/overlays)
+    - [services](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env/dev/services)
+
+  - Prod
+    - [base](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env/prod/base)
+    - [overlays](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env/prod/overlays)
+    - [services](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env/prod/services)
+
+
+
+#### Src
+- [src](https://github.com/nnbaocuong99/gitops-config-template/tree/main/src) 
+- [CSS](https://github.com/nnbaocuong99/gitops-config-template/blob/main/src/css.js)

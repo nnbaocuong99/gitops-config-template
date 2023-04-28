@@ -5,8 +5,6 @@
 - [CI/CD](https://github.com/nnbaocuong99/gitops-config-template/tree/main/config/CICD%20pip)
 
 #### 2. Environments
-- [.env](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env)
-
   - Dev
     - [base](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env/dev/base)
     - [overlays](https://github.com/nnbaocuong99/gitops-config-template/tree/main/env/dev/overlays)

@@ -60,10 +60,10 @@ kowl:
   enabled:
 ```
 
----
+<br>
 
 ###### 2. `output.yaml`
-```
+```yaml
 ---
 # Source:
 apiVersion:

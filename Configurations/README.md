@@ -1,5 +1,5 @@
 ###### 1. `values.yaml`
-```
+```yaml
 nameOverride: my-nextpay-tech
 fullnameOverride:
 services:
